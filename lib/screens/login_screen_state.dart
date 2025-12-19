@@ -12,6 +12,7 @@ class LoginScreen extends StatefulWidget {
 class LoginScreenState extends State<LoginScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool _isPasswordHidden = true;
   String _error = '';
 
   void login() {
@@ -45,12 +46,30 @@ class LoginScreenState extends State<LoginScreen> {
           children: [
             TextField(
               controller: _usernameController,
-              decoration: InputDecoration(hintText: 'Username'),
+              decoration: InputDecoration(
+                hintText: 'Username',
+                labelText: 'Username',
+              ),
             ),
             SizedBox(height: 10),
             TextField(
+              obscureText: _isPasswordHidden,
+              obscuringCharacter: '&',
               controller: _passwordController,
-              decoration: InputDecoration(hintText: 'Password'),
+              decoration: InputDecoration(
+                hintText: 'Password',
+                labelText: 'Password',
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _isPasswordHidden = !_isPasswordHidden;
+                    });
+                  },
+                  icon: Icon(
+                    _isPasswordHidden ? Icons.visibility_off : Icons.visibility,
+                  ),
+                ),
+              ),
             ),
             SizedBox(height: 10),
             Center(
