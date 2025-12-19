@@ -1,5 +1,5 @@
-import 'package:complex_data_management/screens/profile_screen_state.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,10 +25,7 @@ class HomeScreenState extends State<HomeScreen> {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ProfileScreen()),
-                );
+                context.go('/profile');
               },
               child: Text('Go to Profile'),
             ),

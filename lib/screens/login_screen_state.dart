@@ -1,5 +1,5 @@
-import 'package:complex_data_management/screens/home_screen_state.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -25,10 +25,7 @@ class LoginScreenState extends State<LoginScreen> {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
-                );
+                context.go('/home');
               },
               child: Text('Go to Home'),
             ),

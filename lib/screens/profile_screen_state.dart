@@ -1,5 +1,5 @@
-import 'package:complex_data_management/screens/login_screen_state.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -25,10 +25,7 @@ class ProfileScreenState extends State<ProfileScreen> {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
-                );
+                context.go('/login');
               },
               child: Text('Go to Login'),
             ),
