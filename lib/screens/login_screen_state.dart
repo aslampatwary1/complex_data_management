@@ -1,3 +1,4 @@
+import 'package:complex_data_management/auth/user_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -9,6 +10,26 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  String _error = '';
+
+  void login() {
+    final username = _usernameController.text.trim();
+    final password = _passwordController.text.trim();
+
+    if (username == 'aslam' && password == '123456') {
+      UserAuth.isLoggedIn = true;
+      context.go('/home');
+    } else {
+      setState(() {
+        _error = 'Invalid Username and Password';
+        _usernameController.clear();
+        _passwordController.clear();
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,20 +38,32 @@ class LoginScreenState extends State<LoginScreen> {
         centerTitle: true,
         backgroundColor: Colors.blueGrey,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(child: Text('Now, I am in Login Page')),
-          SizedBox(height: 10),
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                context.go('/home');
-              },
-              child: Text('Go to Home'),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(
+              controller: _usernameController,
+              decoration: InputDecoration(hintText: 'Username'),
             ),
-          ),
-        ],
+            SizedBox(height: 10),
+            TextField(
+              controller: _passwordController,
+              decoration: InputDecoration(hintText: 'Password'),
+            ),
+            SizedBox(height: 10),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  login();
+                },
+                child: Text('Login'),
+              ),
+            ),
+            if (_error.isNotEmpty) Text(_error),
+          ],
+        ),
       ),
     );
   }

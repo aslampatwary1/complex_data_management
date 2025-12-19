@@ -1,3 +1,4 @@
+import 'package:complex_data_management/main.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,6 +15,7 @@ class HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home Screen'),
+        actions: [logout(context)],
         centerTitle: true,
         backgroundColor: Colors.blueGrey,
       ),
@@ -25,7 +27,7 @@ class HomeScreenState extends State<HomeScreen> {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                context.go('/profile');
+                context.push('/profile');
               },
               child: Text('Go to Profile'),
             ),

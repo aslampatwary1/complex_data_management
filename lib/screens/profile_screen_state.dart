@@ -1,3 +1,4 @@
+import 'package:complex_data_management/main.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,6 +15,7 @@ class ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile Screen'),
+        actions: [logout(context)],
         centerTitle: true,
         backgroundColor: Colors.blueGrey,
       ),
@@ -25,9 +27,9 @@ class ProfileScreenState extends State<ProfileScreen> {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                context.go('/login');
+                context.pop();
               },
-              child: Text('Go to Login'),
+              child: Text('Dashboard'),
             ),
           ),
         ],
