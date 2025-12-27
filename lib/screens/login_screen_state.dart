@@ -54,7 +54,7 @@ class LoginScreenState extends State<LoginScreen> {
             SizedBox(height: 10),
             TextField(
               obscureText: _isPasswordHidden,
-              obscuringCharacter: '&',
+              obscuringCharacter: '#',
               controller: _passwordController,
               decoration: InputDecoration(
                 hintText: 'Password',

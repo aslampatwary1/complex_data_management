@@ -1,10 +1,7 @@
-import 'package:complex_data_management/auth/user_auth.dart';
-import 'package:complex_data_management/router/app_router.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-void main(List<String> args) {
-  runApp(MyApp());
+void main() {
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -12,19 +9,44 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: AppRouter,
-      debugShowCheckedModeBanner: false,
-    );
+    return const MaterialApp(home: HomeScreen());
   }
 }
 
-Widget logout(BuildContext context) {
-  return IconButton(
-    onPressed: () {
-      UserAuth.isLoggedIn = false;
-      context.go('/login');
-    },
-    icon: Icon(Icons.logout),
-  );
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: ElevatedButton(
+        onPressed: () {
+          showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (context) => Dialog(
+              child: Column(
+                children: [
+                  Text('Test Dialog'),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text('Close'),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+        child: Text('Show Dialog'),
+      ),
+    );
+  }
 }
